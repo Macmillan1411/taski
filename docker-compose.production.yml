@@ -27,8 +27,10 @@ services:
     env_file: .env
     volumes:
       - static:/staticfiles
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
       - 8000:80
+      - 443:443
     depends_on:
       - backend
       - frontend
