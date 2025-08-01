@@ -8,6 +8,7 @@ services:
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
+
   backend:
     image: macmillan1411/taski_backend
     env_file: .env
@@ -15,24 +16,38 @@ services:
       - static:/backend_static
     depends_on:
       - db
-  
+    networks:
+      - proxy-net
+
   frontend:
-    env_file: .env
     image: macmillan1411/taski_frontend
+    env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
+    networks:
+      - proxy-net
+
   gateway:
     image: macmillan1411/taski_gateway
     env_file: .env
     volumes:
       - static:/staticfiles
-    ports:
-      - 443:443
-      - 8000:80
     depends_on:
       - backend
       - frontend
+    environment:
+      - VIRTUAL_HOST=taski.gudoprojects.ru
+      - LETSENCRYPT_HOST=taski.gudoprojects.ru
+      - LETSENCRYPT_EMAIL=your@email.com
+    expose:
+      - "80"
+    networks:
+      - proxy-net
+
+networks:
+  proxy-net:
+    external: true
 
 
 
