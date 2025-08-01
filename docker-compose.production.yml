@@ -29,7 +29,8 @@ services:
       - static:/staticfiles
       - ./ssl_certs:/ssl_certs:ro
     ports:
-      - 8000:80
+      - 443:443
+      - 80:80
     depends_on:
       - backend
       - frontend
