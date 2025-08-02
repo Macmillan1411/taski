@@ -37,8 +37,8 @@ services:
       - backend
       - frontend
     environment:
-      - VIRTUAL_HOST=taski.gudoprojects.ru
-      - LETSENCRYPT_HOST=taski.gudoprojects.ru
+      - VIRTUAL_HOST=gudoprojects.ru
+      - LETSENCRYPT_HOST=gudoprojects.ru
       - LETSENCRYPT_EMAIL=macmillantpiwanshe1411@gmail.com
     expose:
       - "80"
