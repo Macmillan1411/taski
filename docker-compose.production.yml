@@ -15,9 +15,7 @@ services:
     volumes:
       - static:/backend_static
     depends_on:
-      - db
-    networks:
-      - proxy-net
+
 
   frontend:
     image: macmillan1411/taski_frontend
@@ -25,8 +23,7 @@ services:
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
-    networks:
-      - proxy-net
+
 
   gateway:
     image: macmillan1411/taski_gateway
@@ -36,19 +33,8 @@ services:
     depends_on:
       - backend
       - frontend
-    environment:
-      - VIRTUAL_HOST=gudoprojects.ru
-      - LETSENCRYPT_HOST=gudoprojects.ru
-      - LETSENCRYPT_EMAIL=macmillantpiwanshe1411@gmail.com
-    expose:
-      - "80"
-    networks:
-      - proxy-net
-
-networks:
-  proxy-net:
-    external: true
-
+    ports:
+      - "8000:80"
 
 
 
