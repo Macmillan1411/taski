@@ -39,7 +39,7 @@ services:
     environment:
       - VIRTUAL_HOST=taski.gudoprojects.ru
       - LETSENCRYPT_HOST=taski.gudoprojects.ru
-      - LETSENCRYPT_EMAIL=your@email.com
+      - LETSENCRYPT_EMAIL=macmillantpiwanshe1411@gmail.com
     expose:
       - "80"
     networks:
