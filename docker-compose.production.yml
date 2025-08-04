@@ -15,6 +15,7 @@ services:
     volumes:
       - static:/backend_static
     depends_on:
+      - db
 
 
   frontend:
